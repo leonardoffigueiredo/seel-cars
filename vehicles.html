@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LF Veículos</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-xGj2J0lFztE5v/vO2wfxv7Zve1Ra1F0aQ+hOwL6zBRHg3dK6blCHf3w4xgiZwFEk" crossorigin="anonymous">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>LK Veículos</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vehicles.html">Veículos</a></li>
+          <li><a href="index.html">Sobre nós</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="vehicles">
+    <div class="container">
+      <h2>Nossos Veículos Disponíveis</h2>
+      <ul id="vehicle-list">
+      </ul>
+    </div>
+  </section>
+  <button class="floating-button" onclick="openContactForm()">
+    <i class="fas fa-phone"></i>
+  </button>
+  
+  <div id="contact-form-overlay" class="overlay">
+    <div class="contact-form">
+      <span class="close-btn" onclick="closeContactForm()">&times;</span>
+      <h2>Entre em Contato</h2>
+      <form id="contact-form" onsubmit="submitForm(event)">
+        <input type="text" placeholder="Seu Nome" required>
+        <input type="email" placeholder="Seu Email" required>
+        <textarea placeholder="Sua Mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 LK Veículos</p>
+    </div>
+  </footer>
+
+  <script>
+    const vehicles = [
+  {
+    id: 1,
+    name: "Bmw X6",
+    price: "R$ 1.190.950",
+    image: "bmw-x6-01.png",
+    description: "O BMW X6 é um SUV de luxo que combina elegância, desempenho e tecnologia avançada. Com um design arrojado e aerodinâmico, oferece uma experiência de condução incomparável.",
+    buyLink: "https://www.webmotors.com.br/comprar/bmw/x6/44-v8-biturbo-gasolina-m-competition-automatico/4-portas/2024/50660076?pos=b50660076m:&np=1"
+  },
+  {
+    id: 2,
+    name: "Mercedes GLC 300",
+    price: "R$ 500.990",
+    image: "mercedes-glc300.png",
+    description: "O Mercedes GLC 300 é um SUV premium que combina conforto, sofisticação e potência. Com um interior luxuoso e tecnologias inovadoras, proporciona uma jornada única em cada viagem.",
+    buyLink: "https://www.webmotors.com.br/comprar/mercedes-benz/glc-300/20-mhev-4matic-9g-tronic/4-portas/2023-2024/50280076?pos=a50280076m:&np=1"
+  },
+  {
+    id: 3,
+    name: "Porsche 911",
+    price: "R$ 1.100.000",
+    image: "porsche-911.png",
+    description: "O Porsche 911 é um ícone automotivo, conhecido por sua elegância atemporal e desempenho excepcional. Combinando luxo com esportividade, oferece uma experiência de condução emocionante.",
+    buyLink: "https://www.webmotors.com.br/comprar/porsche/911/30-24v-h6-gasolina-carrera-gts-pdk/2-portas/2022-2023/50675190?pos=a50675190g:&np=1"
+  },
+  {
+    id: 4,
+    name: "Tesla Model S",
+    price: "R$ 848.000",
+    image: "tesla.png",
+    description: "O Tesla Model S é um sedan elétrico de alto desempenho que combina luxo, tecnologia avançada e sustentabilidade. Com um design elegante e aerodinâmico, oferece uma experiência de condução emocionante e confortável, impulsionada por sua inovadora tecnologia de propulsão elétrica.",
+    buyLink: "https://www.webmotors.com.br/comprar/tesla/model-s/eletrico-plaid/4-portas/2022/49130394?pos=a49130394g:&np=1"
+  },
+  {
+    id: 5,
+    name: "Range Rover Evoque",
+    price: "R$ 487.000",
+    image: "range-rover.png",
+    description: "O Range Rover Evoque é um SUV compacto que une estilo, conforto e capacidade off-road. Com um design moderno e funcionalidades avançadas, é perfeito para explorar tanto a cidade quanto o campo.",
+    buyLink: "https://www.webmotors.com.br/comprar/land-rover/range-rover-evoque/20-p250-flex-r-dynamic-hse-awd-automatico/4-portas/2023-2024/50683473?pos=r50683473m:&np=1"
+  },
+  {
+  id: 6,
+  name: "Lamborghini Urus",
+  price: "R$ 3.910.000",
+  image: "urus.png",
+  description: "O Lamborghini Urus é um SUV de alto desempenho que combina luxo com potência. Com um motor V8 biturbo e um design arrojado.",
+  buyLink: "https://www.webmotors.com.br/comprar/lamborghini/urus/40-v8-vegas-570cv-gasolina-automatico/4-portas/2024/50460076?pos=r50460076m:&np=1"
+}
+
+];
+function displayVehicles() {
+      const vehicleList = document.getElementById("vehicle-list");
+
+      vehicles.forEach(vehicle => {
+        const li = document.createElement("li");
+        li.classList.add("vehicle");
+        li.innerHTML = `
+          <h3>${vehicle.name}</h3>
+          <img src="images/${vehicle.image}" alt="${vehicle.name}">
+          <p><strong>Preço:</strong> ${vehicle.price}</p>
+          <p>${vehicle.description}</p>
+          <a href="${vehicle.buyLink}" class="buy-link">Comprar Agora</a>
+        `;
+        li.addEventListener('click', () => {
+          window.open(vehicle.buyLink, '_blank');
+        });
+        vehicleList.appendChild(li);
+      });
+    }
+
+    window.onload = displayVehicles;
+
+    function openContactForm() {
+      document.getElementById("contact-form-overlay").style.display = "block";
+    }
+
+    function closeContactForm() {
+      document.getElementById("contact-form-overlay").style.display = "none";
+    }
+
+    function submitForm(event) {
+      event.preventDefault(); 
+      
+      alert("Obrigado por entrar em contato! Responderemos em breve.");
+      closeContactForm(); 
+    }
+  </script>
+  <script src="https://kit.fontawesome.com/0bf51e96d1.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

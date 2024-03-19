@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LF Veículos</title>
+  <link rel="stylesheet" href="style-home.css">
+  <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>LK Veículos</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vehicles.html">Veículos</a></li>
+          <li><a href="#about">Sobre nós</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Bem-vindo à LK veículos!</h2>
+      <p>Aqui você encontra o seu novo carro dos seus sonhos com o melhor preço.</p>
+      <div class="slideshow-container">
+        <div class="mySlides fade">
+          <a href="vehicles.html"><img src="images/bmw-x6-01.png" style="width:100%"></a>
+        </div>
+        <div class="mySlides fade">
+          <a href="vehicles.html"><img src="images/mercedes-glc300.png" style="width:100%"></a>
+        </div>
+        <div class="mySlides fade">
+          <a href="vehicles.html"><img src="images/porsche-911.png" style="width:100%"></a>
+        </div>
+        <div class="mySlides fade">
+          <a href="vehicles.html"><img src="images/urus.png" style="width:100%"></a>
+        </div>
+        <div class="mySlides fade">
+          <a href="vehicles.html"><img src="images/tesla.png" style="width:100%"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="text-container">
+          <h2>Sobre Nós</h2>
+          <p>Somos a LK Veículos, uma equipe dedicada e especializada em proporcionar a melhor experiência de compra e
+            venda de veículos para nossos clientes. Com anos de experiência no mercado automotivo, estamos comprometidos
+            em oferecer veículos de alta qualidade, atendimento personalizado e transparência em todos os nossos
+            negócios. Nosso objetivo é ajudar você a encontrar o carro dos seus sonhos, tornando o processo fácil,
+            seguro e satisfatório. Estamos sempre em busca de aprimorar nossos serviços e oferecer as melhores soluções
+            para suas necessidades automotivas. Contamos com uma equipe de profissionais capacitados e apaixonados pelo
+            que fazem, prontos para atendê-lo com excelência e dedicação. Venha nos conhecer e descubra como podemos
+            tornar a sua experiência automotiva ainda mais especial.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button class="floating-button" onclick="openContactForm()">
+    <i class="fas fa-phone"></i>
+  </button>
+  
+  <div id="contact-form-overlay" class="overlay">
+    <div class="contact-form">
+      <span class="close-btn" onclick="closeContactForm()">&times;</span>
+      <h2>Entre em Contato</h2>
+      <form id="contact-form" onsubmit="submitForm(event)">
+        <input type="text" placeholder="Seu Nome" required>
+        <input type="email" placeholder="Seu Email" required>
+        <textarea placeholder="Sua Mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 LK Veículos</p>
+    </div>
+  </footer>
+
+  <script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1
+      }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 2000);
+    }
+
+    function openContactForm() {
+      document.getElementById("contact-form-overlay").style.display = "block";
+    }
+
+    function closeContactForm() {
+      document.getElementById("contact-form-overlay").style.display = "none";
+    }
+
+    function submitForm(event) {
+      event.preventDefault(); 
+
+      
+      alert("Obrigado por entrar em contato! Responderemos assim que possível");
+      closeContactForm(); 
+    }
+  </script>
+  <script src="https://kit.fontawesome.com/0bf51e96d1.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
