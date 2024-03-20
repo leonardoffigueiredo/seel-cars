@@ -114,7 +114,7 @@ function displayVehicles() {
         li.classList.add("vehicle");
         li.innerHTML = `
           <h3>${vehicle.name}</h3>
-          <img src="images/${vehicle.image}" alt="${vehicle.name}">
+          <img src="${vehicle.image}" alt="${vehicle.name}">
           <p><strong>Preço:</strong> ${vehicle.price}</p>
           <p>${vehicle.description}</p>
           <a href="${vehicle.buyLink}" class="buy-link">Comprar Agora</a>
